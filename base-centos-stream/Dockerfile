@@ -4,7 +4,9 @@ LABEL author="Christian Molinari" \
     description="A base Linux image based on Centos Stream 10."
 
 RUN dnf update -y && \
-    dnf install -y sudo && \
+    dnf install -y sudo dnf-plugins-core && \
+    dnf config-manager --set-enabled crb && \
+    dnf install -y epel-release && \
     dnf clean all
 
 # === DEVELOPMENT LAYER ===
